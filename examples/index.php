@@ -13,7 +13,7 @@ $items[] = ["Id" => 3, "Name" => "Name3"];
 $items[] = ["Id" => 4, "Name" => "Name4"];
 $items[] = ["Id" => 5, "Name" => "Name5"];
 $response = new Response();
-$response->params = [""];
+$response->params = ["number" => 1, "keyword" => $_GET["keyword"] ?? ""];
 $response->totalrows = 10;
 $response->number = 1;
 $response->indexPage = 1;
@@ -34,19 +34,19 @@ $data = $response->ToArray();
 </head>
 
 <body>
-    <h1 class="text-center">Hello World</h1>
+    <h1 class="text-center">Datatable</h1>
 
     <div>
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">Quản Lý Thẻ</h3>
+                <h3 class="box-title">List Items</h3>
             </div>
             <div class="box-body">
                 <?php
                 $link = "/examples/index.php";
                 // $dataTable = new Table(["rows" => $data["rows"], "columns" => $columns], Card::class);
                 $dataTable = new Table(["rows" => $response->rows, "columns" => $response->columns], ModelAny::class);
-                $dataTable->GetHtml();
+                $dataTable->RenderHtml();
                 echo $dataTable->PaginationWidthData($data, $link);
                 ?>
             </div>
@@ -55,5 +55,6 @@ $data = $response->ToArray();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</body> 
+</body>
+
 </html>

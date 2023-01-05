@@ -84,6 +84,45 @@ class Table
         </table>
         <?php
     }
+    public function RenderHtml()
+    {
+        $className = $this->classname;
+        ?>
+        <table class="table table-border">
+            <tr class="bg-primary">
+                <?php
+                foreach ($this->GetColumns() as $key => $title) {
+                    ?>
+                    <th><?php echo $key == "Actions" ? "Action" : $title; ?></th>
+                    <?php
+                }
+                ?>
+            </tr>
+
+            <?php
+            foreach ($this->GetRows() as $key => $row) {
+                $item = new $className($row);
+                if (method_exists($className, "ToArray")) {
+                    foreach ($item->ToArray() as $k => $v) {
+                        $row[$k] = $v;
+                    }
+                }
+                ?>
+                <tr>
+                    <?php
+                    foreach ($this->GetColumns() as $columnName => $title) {
+                        ?>
+                        <td><?php echo $row[$columnName]; ?></td>
+                        <?php
+                    }
+                    ?>
+                </tr>
+                <?php
+            }
+            ?>
+        </table>
+        <?php
+    }
     public function GetlinkPTByAction($params, $link = "")
     {
         unset($params["indexPage"]);
