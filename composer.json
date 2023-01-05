@@ -1,0 +1,28 @@
+{
+    "name": "namdongvando/datatable",
+    "description": "datatable",
+    "keywords": [
+        "php",
+        "images optimizer"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "email": "namdong92@gmail.com",
+            "role": "Owner"
+        },
+        {
+            "email": "namdong92@gmail.com",
+            "role": "Committer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Datatable\\": "src/"
+        }
+    }
+}
