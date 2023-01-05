@@ -46,6 +46,12 @@ $data = $response->ToArray();
                 $link = "/examples/index.php";
                 // $dataTable = new Table(["rows" => $data["rows"], "columns" => $columns], Card::class);
                 $dataTable = new Table(["rows" => $response->rows, "columns" => $response->columns], ModelAny::class);
+                $dataTable->setPropTable(
+                    [
+                        "table" => ["id" => "table", "class" => "table table-border"],
+                        "thead" => ["class" => "bg-primary"],
+                    ]
+                );
                 $dataTable->RenderHtml();
                 echo $dataTable->PaginationWidthData($data, $link);
                 ?>

@@ -5,6 +5,9 @@ namespace Datatable;
 class Table
 {
     public $rows;
+    public $tableProp;
+    public $tbodyProp;
+    public $theadProp;
     public $classname;
     public $columns;
     public $hasActions;
@@ -84,42 +87,71 @@ class Table
         </table>
         <?php
     }
+
+    public function setPropTable($table)
+    {
+        $tbl = "";
+        $tablePro = $table["table"] ?? [];
+        foreach ($tablePro as $key => $value) {
+            $tbl .= $key . ' = "' . $value . '" ';
+        }
+        $this->tableProp = $tbl;
+        $tbody = "";
+        $tablePro = $table["tbody"] ?? [];
+        foreach ($tablePro as $key => $value) {
+            $tbody .= $key . ' = "' . $value . '" ';
+        }
+        $this->tbodyProp = $tbody;
+
+        $thear = "";
+        $tablePro = $table["thead"] ?? [];
+        foreach ($tablePro as $key => $value) {
+            $thear .= $key . ' = "' . $value . '" ';
+        }
+        $this->theadProp = $thear;
+    }
+
     public function RenderHtml()
     {
         $className = $this->classname;
         ?>
-        <table class="table table-border">
-            <tr class="bg-primary">
-                <?php
-                foreach ($this->GetColumns() as $key => $title) {
-                    ?>
-                    <th><?php echo $key == "Actions" ? "Action" : $title; ?></th>
+        <table <?php echo $this->tableProp; ?> >
+            <thead <?php echo $this->theadProp; ?>>
+                <tr  >
                     <?php
-                }
-                ?>
-            </tr>
-
-            <?php
-            foreach ($this->GetRows() as $key => $row) {
-                $item = new $className($row);
-                if (method_exists($className, "ToArray")) {
-                    foreach ($item->ToArray() as $k => $v) {
-                        $row[$k] = $v;
-                    }
-                }
-                ?>
-                <tr>
-                    <?php
-                    foreach ($this->GetColumns() as $columnName => $title) {
+                    foreach ($this->GetColumns() as $key => $title) {
                         ?>
-                        <td><?php echo $row[$columnName]; ?></td>
+                        <th><?php echo $key == "Actions" ? "Action" : $title; ?></th>
                         <?php
                     }
                     ?>
                 </tr>
+            </thead>
+            <tbody <?php echo $this->tbodyProp; ?>>
                 <?php
-            }
-            ?>
+                foreach ($this->GetRows() as $key => $row) {
+                    $item = new $className($row);
+                    if (method_exists($className, "ToArray")) {
+                        foreach ($item->ToArray() as $k => $v) {
+                            $row[$k] = $v;
+                        }
+                    }
+                    ?>
+                    <tr>
+                        <?php
+                        foreach ($this->GetColumns() as $columnName => $title) {
+                            ?>
+                            <td>
+                                <?php echo $row[$columnName]; ?>
+                            </td>
+                            <?php
+                        }
+                        ?>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </tbody>
         </table>
         <?php
     }
