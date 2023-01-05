@@ -1,9 +1,9 @@
 {
-    "name": "namdongvando/datatable",
-    "description": "datatable",
+    "name": "namdongvando/phpdatatable",
+    "description": "phpdatatable",
     "keywords": [
         "php",
-        "images optimizer"
+        "php datatable"
     ],
     "type": "library",
     "license": "MIT",
