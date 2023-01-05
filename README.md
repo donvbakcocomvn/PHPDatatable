@@ -6,14 +6,14 @@ Composer is the easiest way to manage dependencies in your project. Create a fil
 ```json
 {
     "require": {
-       "namdongvando/datatable": "^0.1"
+       "namdongvando/phpdatatable": "^0.1"
     }
 }
 ```
 And run Composer to install Datatable:
 
 ```bash
-composer require namdongvando/datatable
+composer require namdongvando/phpdatatable
 ```
 
 ## Code Samples
