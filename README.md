@@ -6,7 +6,7 @@ Composer is the easiest way to manage dependencies in your project. Create a fil
 ```json
 {
     "require": {
-       "namdongvando/phpdatatable": "^0.2"
+       "namdongvando/phpdatatable": "^1.1"
     }
 }
 ```
