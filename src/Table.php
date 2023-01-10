@@ -66,8 +66,8 @@ class Table
             <?php
             foreach ($this->GetRows() as $key => $row) {
                 $item = new $className($row);
-                if (method_exists($className, "ToArray")) {
-                    foreach ($item->ToArray() as $k => $v) {
+                if (method_exists($className, "ToRow")) {
+                    foreach ($item->ToRow($key) as $k => $v) {
                         $row[$k] = $v;
                     }
                 }
@@ -115,9 +115,9 @@ class Table
     {
         $className = $this->classname;
         ?>
-        <table <?php echo $this->tableProp; ?> >
+        <table <?php echo $this->tableProp; ?>>
             <thead <?php echo $this->theadProp; ?>>
-                <tr  >
+                <tr>
                     <?php
                     foreach ($this->GetColumns() as $key => $title) {
                         ?>
@@ -131,8 +131,8 @@ class Table
                 <?php
                 foreach ($this->GetRows() as $key => $row) {
                     $item = new $className($row);
-                    if (method_exists($className, "ToArray")) {
-                        foreach ($item->ToArray() as $k => $v) {
+                    if (method_exists($className, "ToRow")) {
+                        foreach ($item->ToRow($key) as $k => $v) {
                             $row[$k] = $v;
                         }
                     }

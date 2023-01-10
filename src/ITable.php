@@ -5,8 +5,8 @@ namespace Datatable;
 interface ITable
 {
     public function BtnGroup();
-    public function ToArray();
- 
+    public function ToRow($index);
+
 }
 
 ?>
