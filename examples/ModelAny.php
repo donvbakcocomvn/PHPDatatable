@@ -32,8 +32,8 @@ class ModelAny implements ITable
 
     /**
      * @return mixed
-     */
-    public function ToArray()
+     */ 
+    public function ToRow()
     {
         return (array) $this;
     }

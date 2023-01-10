@@ -48,8 +48,7 @@ class Response
     {
 
     }
-    
-
+ 
     public static function ToJson($items)
     {
         return json_encode($items, JSON_UNESCAPED_UNICODE);
