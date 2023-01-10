@@ -135,6 +135,7 @@ class Table
                         foreach ($item->ToRow($key) as $k => $v) {
                             $row[$k] = $v;
                         }
+                        
                     }
                     ?>
                     <tr>
